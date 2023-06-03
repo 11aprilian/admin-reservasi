@@ -8,7 +8,6 @@ const Rute = () => {
   return (
     <div>
       <Navbar/>
-      <Breadcrumb/>
       <RuteTable/>
     </div>
   )

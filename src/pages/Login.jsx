@@ -12,7 +12,7 @@ const Login = () => {
   const loginAdmin = async () => {
     try {   
       let admin = await fetch(
-        "https://backend-reservasi-production.up.railway.app/admin/login",
+        "http://localhost:3050/admin/login",
         {
           method: "POST",
           headers: {

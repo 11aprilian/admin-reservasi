@@ -26,7 +26,7 @@ const RuteAdd = () => {
       try {
         axios
           .post(
-            "https://backend-reservasi-production.up.railway.app/rute",
+            "http://localhost:3050/rute",
             dataRute,
             {
               headers: {
@@ -63,7 +63,6 @@ const RuteAdd = () => {
   return (
     <div>
       <Navbar />
-      <Breadcrumb/>
       <div className="container my-3">
         <form>
           <div className="form-group">

@@ -6,14 +6,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../components/layouts/Breadcrumb";
 
-const JadwalUpdate = () => {
+const JamUpdate = () => {
   const [jam, setJam] = useState("");
   const id = localStorage.getItem("idJadwal");
   const navigate = useNavigate();
 
   const fetchJadwalById = () => {
     axios
-      .get("https://backend-reservasi-production.up.railway.app/jadwal/" + id)
+      .get("http://localhost:3050/jadwal/" + id)
       .then((result) => {
         const responseAPI = result.data.data;
         setJam(responseAPI.jam);
@@ -36,7 +36,7 @@ const JadwalUpdate = () => {
       if (result.isConfirmed) {
         axios
           .put(
-            "https://backend-reservasi-production.up.railway.app/jadwal/" + id,
+            "http://localhost:3050/jadwal/" + id,
             dataJadwal,
             {
               headers: {
@@ -52,7 +52,7 @@ const JadwalUpdate = () => {
               icon: "success",
               showConfirmButton: true,
             });
-            navigate("/jadwal");
+            navigate("/jam");
           })
           .catch(() => {
             Swal.fire({
@@ -72,7 +72,6 @@ const JadwalUpdate = () => {
   return (
     <div>
       <Navbar />
-      <Breadcrumb/>
       <div className="container my-3">
         <form>
         <div className="form-group">
@@ -113,4 +112,4 @@ const JadwalUpdate = () => {
   );
 };
 
-export default JadwalUpdate;
+export default JamUpdate;

@@ -21,11 +21,12 @@ const TransaksiDetail = () => {
   const [userId, setUserId] = useState("");
   const [ruteId, setRuteId] = useState("");
   const [jadwalId, setJadwalId] = useState("");
+  const [driverId, setDriverId] = useState("");
 
   const fetchTransaksi = () => {
     axios
       .get(
-        "https://backend-reservasi-production.up.railway.app/transaksi/" +
+        "http://localhost:3050/transaksi/" +
           idTrans
       )
       .then((result) => {
@@ -35,7 +36,8 @@ const TransaksiDetail = () => {
         setNama(responseAPI.data.nama);
         setId(responseAPI.data.id);
         setAlamat(responseAPI.data.alamat);
-        setTglBerangkat(responseAPI.data.tanggal);
+        setTglBerangkat(responseAPI.data.Jadwal_driver.Tanggal.tanggal);
+        setJam(responseAPI.data.Jadwal_driver.Jadwal.jam);
         setTelepon(responseAPI.data.no_hp);
         setBank(responseAPI.data.bank);
         setVa(responseAPI.data.va_number);
@@ -43,10 +45,10 @@ const TransaksiDetail = () => {
         setTotal(responseAPI.data.total);
         setTglTransaksi(responseAPI.data.createdAt);
         setRute(responseAPI.data.Rute.arah);
-        setJam(responseAPI.data.Jadwal.jam);
         setUserId(responseAPI.data.User.id);
         setRuteId(responseAPI.data.Rute.id);
-        setJadwalId(responseAPI.data.Jadwal.id);
+        setJadwalId(responseAPI.data.JadwalDriverId);
+        setDriverId(responseAPI.data.DriverId);
       })
       .catch((err) => {
         console.log(err);
@@ -61,7 +63,6 @@ const TransaksiDetail = () => {
   return (
     <div>
       <Navbar />
-      <Breadcrumb/>
       <div>
         <div className="card m-3">
           <div className="card-body">
@@ -125,17 +126,30 @@ const TransaksiDetail = () => {
                   <tr>
                     <td>ID User</td>
                     <td> : </td>
-                    <td>{userId}</td>
+                    <td>
+                    <input className="form-control-sm bg-white" value={userId} placeholder="Belum Diatur" disabled/>
+                    </td>
                   </tr>
                   <tr>
                     <td>ID Rute</td>
                     <td> : </td>
-                    <td>{ruteId}</td>
+                    <td>
+                    <input className="form-control-sm bg-white" value={ruteId} placeholder="Belum Diatur" disabled/>
+                    </td>
                   </tr>
                   <tr>
-                    <td>ID Jadwal</td>
+                    <td>ID Jadwal Driver</td>
                     <td> : </td>
-                    <td>{jadwalId}</td>
+                    <td>
+                    <input className="form-control-sm bg-white" value={jadwalId} placeholder="Belum Diatur" disabled/>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>ID Driver</td>
+                    <td> : </td>
+                    <td>
+                      <input className="form-control-sm bg-white" value={driverId} placeholder="Belum Diatur" disabled/>
+                      </td>
                   </tr>
                 </tbody>
               </table>

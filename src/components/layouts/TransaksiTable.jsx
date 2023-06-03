@@ -11,7 +11,7 @@ const TransaksiTable = () => {
 
   const fetchTransaksi = () => {
     axios
-      .get("https://backend-reservasi-production.up.railway.app/transaksi")
+      .get("http://localhost:3050/transaksi")
       .then((result) => {
         const responseAPI = result.data;
 
@@ -36,7 +36,7 @@ const TransaksiTable = () => {
   }, []);
 
   return (
-    <div className="container-fluid table-responsive-sm">
+    <div className="container-fluid table-responsive-sm mt-3">
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>

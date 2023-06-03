@@ -8,7 +8,7 @@ const UserTable = () => {
 
   const fetchUser = () => {
     axios
-      .get("https://backend-reservasi-production.up.railway.app/user")
+      .get("http://localhost:3050/user")
       .then((result) => {
         const responseAPI = result.data;
         setDataUser(responseAPI.data);
@@ -25,7 +25,7 @@ const UserTable = () => {
   localStorage.setItem("idUser", idUser)
 
   return (
-    <div className="container-fluid table-responsive-sm">
+    <div className="container-fluid table-responsive-sm mt-3">
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>

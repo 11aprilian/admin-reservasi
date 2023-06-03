@@ -7,7 +7,6 @@ const Transaksi = () => {
   return (
     <div>
         <Navbar/>
-        <Breadcrumb/>
         <TransaksiTable/>
     </div>
   )

@@ -14,7 +14,7 @@ const RuteUpdate = () => {
 
   const fetchRuteById = () => {
     axios
-      .get("https://backend-reservasi-production.up.railway.app/rute/" + id)
+      .get("http://localhost:3050/rute/" + id)
       .then((result) => {
         const responseAPI = result.data.data;
         setArah(responseAPI.arah);
@@ -39,7 +39,7 @@ const RuteUpdate = () => {
       if (result.isConfirmed) {
         axios
           .put(
-            "https://backend-reservasi-production.up.railway.app/rute/" + id,
+            "http://localhost:3050/rute/" + id,
             dataRute,
             {
               headers: {
@@ -74,7 +74,6 @@ const RuteUpdate = () => {
   return (
     <div>
       <Navbar />
-      <Breadcrumb/>
       <div className="container my-3">
         <form>
         <div className="form-group">

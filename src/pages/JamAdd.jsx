@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from '../components/layouts/Breadcrumb';
 
-const JadwalAdd = () => {
+const JamAdd = () => {
     const [jam, setJam] = useState("");
     const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const JadwalAdd = () => {
           try {
             axios
               .post(
-                "https://backend-reservasi-production.up.railway.app/jadwal",
+                "http://localhost:3050/jadwal",
                 dataJadwal,
                 {
                   headers: {
@@ -40,7 +40,7 @@ const JadwalAdd = () => {
                     icon: "success",
                     showConfirmButton: true,
                   });
-                  navigate("/jadwal")
+                  navigate("/jam")
               })
               .catch(() => {
                 Swal.fire({
@@ -62,7 +62,6 @@ const JadwalAdd = () => {
   return (
     <div>
         <Navbar />
-        <Breadcrumb/>
       <div className="container my-3">
         <form>
           <div className="form-group">
@@ -90,4 +89,4 @@ const JadwalAdd = () => {
   )
 }
 
-export default JadwalAdd
+export default JamAdd

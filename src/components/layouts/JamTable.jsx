@@ -5,14 +5,14 @@ import { BsFillPencilFill, BsFillTrash3Fill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const JadwalTable = () => {
+const JamTable = () => {
   const [dataJadwal, setDataJadwal] = useState([]);
   const [idJadwal, setIdJadwal] = useState("");
   const navigate = useNavigate();
 
   const fetchJadwal = () => {
     axios
-      .get("https://backend-reservasi-production.up.railway.app/jadwal")
+      .get("http://localhost:3050/jadwal")
       .then((result) => {
         const responseAPI = result.data;
 
@@ -35,7 +35,7 @@ const JadwalTable = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            "https://backend-reservasi-production.up.railway.app/jadwal/" +
+            "http://localhost:3050/jadwal/" +
               idJadwal,
             {
               headers: {
@@ -61,7 +61,7 @@ const JadwalTable = () => {
     if (!localStorage.idJadwal) {
       localStorage.setItem("idJadwal", idJadwal);
     } else {
-      navigate("/jadwal/update");
+      navigate("/jam/update");
     }
   };
 
@@ -73,7 +73,7 @@ const JadwalTable = () => {
   return (
     <div className="container-fluid table-responsive-sm">
       <div>
-        <Link to="/jadwal/add" className="btn btn-sm btn-outline-dark my-3">Tambah Data +</Link>
+        <Link to="/jam/add" className="btn btn-sm btn-outline-dark my-3">Tambah Data +</Link>
       </div>
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
@@ -124,4 +124,4 @@ const JadwalTable = () => {
   );
 };
 
-export default JadwalTable;
+export default JamTable;

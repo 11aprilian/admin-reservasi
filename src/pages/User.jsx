@@ -7,7 +7,6 @@ const User = () => {
   return (
     <div>
         <Navbar/>
-        <Breadcrumb/>
         <UserTable/>
     </div>
   )

@@ -1,16 +1,15 @@
 import React from 'react'
 import Breadcrumb from '../components/layouts/Breadcrumb'
-import JadwalTable from '../components/layouts/JadwalTable'
+import JamTable from '../components/layouts/JamTable'
 import Navbar from '../components/layouts/Navbar'
 
-const Jadwal = () => {
+const Jam = () => {
   return (
     <div>
         <Navbar/>
-        <Breadcrumb/>
-        <JadwalTable/>
+        <JamTable/>
     </div>
   )
 }
 
-export default Jadwal
+export default Jam

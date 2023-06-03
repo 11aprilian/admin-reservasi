@@ -65,8 +65,11 @@ const Navbar = () => {
               <Link className="nav-link" to="/rute">
                 Rute
               </Link>
-              <Link className="nav-link" to="/jadwal">
-                Jadwal
+              <Link className="nav-link" to="/jam">
+                Jam
+              </Link>
+              <Link className="nav-link" to="/tanggal">
+                Tanggal
               </Link>
               <Link className="nav-link" to="/user">
                 User

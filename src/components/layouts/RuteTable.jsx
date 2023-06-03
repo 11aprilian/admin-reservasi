@@ -12,7 +12,7 @@ const RuteTable = () => {
 
   const fetchRute = () => {
     axios
-      .get("https://backend-reservasi-production.up.railway.app/rute")
+      .get("http://localhost:3050/rute")
       .then((result) => {
         const responseAPI = result.data;
 
@@ -35,7 +35,7 @@ const RuteTable = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            "https://backend-reservasi-production.up.railway.app/rute/" +
+            "http://localhost:3050/rute/" +
               idRute,
             {
               headers: {
