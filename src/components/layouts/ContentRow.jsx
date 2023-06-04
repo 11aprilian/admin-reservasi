@@ -88,7 +88,7 @@ const ContentRow = () => {
                         <span>
                           <Link
                             to={"/tanggal"}
-                            className="text-decoration-none text-danger"
+                            className="text-decoration-none"
                           >
                             Tanggal
                           </Link>
@@ -98,10 +98,7 @@ const ContentRow = () => {
                         Menentukan jadwal keberangkatan yang akan digunakan
                         driver pada menu{" "}
                         <span>
-                          <Link
-                            to={"/driver"}
-                            className="text-decoration-none text-danger"
-                          >
+                          <Link to={"/driver"} className="text-decoration-none">
                             Driver
                           </Link>
                         </span>
@@ -110,10 +107,7 @@ const ContentRow = () => {
                         Menginputkan driver sesuai dengan jadwal pada transaksi
                         yang masuk di menu{" "}
                         <span>
-                          <Link
-                            to={"/transaksi"}
-                            className="text-decoration-none text-danger"
-                          >
+                        <Link to={"/transaksi"} className="text-decoration-none">
                             Transaksi
                           </Link>
                         </span>
