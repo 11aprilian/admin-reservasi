@@ -12,6 +12,11 @@ import RuteUpdate from "./pages/RuteUpdate";
 import JamAdd from "./pages/JamAdd";
 import JamUpdate from "./pages/JamUpdate";
 import Tanggal from "./pages/Tanggal";
+import TanggalAdd from "./pages/TanggalAdd";
+import TanggalUpdate from "./pages/TanggalUpdate";
+import Jadwal from "./pages/Jadwal";
+import Driver from "./pages/Driver";
+import DriverOption from "./pages/DriverOption";
 
 
 function App() {
@@ -30,6 +35,11 @@ function App() {
         <Route path="/jam/add" element={<JamAdd />} />
         <Route path="/jam/update" element={<JamUpdate />} />
         <Route path="/tanggal" element={<Tanggal />} />
+        <Route path="/tanggal/add" element={<TanggalAdd />} />
+        <Route path="/tanggal/update" element={<TanggalUpdate />} />
+        <Route path="/jadwal/:id" element={<Jadwal />} />
+        <Route path="/driver" element={<Driver />} />
+        <Route path="/driver/option/:id" element={<DriverOption />} />
       </Routes>
     </>
   );

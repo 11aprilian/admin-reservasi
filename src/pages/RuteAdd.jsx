@@ -63,7 +63,7 @@ const RuteAdd = () => {
   return (
     <div>
       <Navbar />
-      <div className="container my-3">
+      <div className="container m-3">
         <form>
           <div className="form-group">
             <label>Arah Travel</label>

@@ -1,14 +1,14 @@
 import React from 'react'
 import Navbar from '../components/layouts/Navbar'
-import TanggalTable from '../components/layouts/TanggalTable'
+import DriverTable from '../components/layouts/DriverTable'
 
-const Tanggal = () => {
+const Driver = () => {
   return (
     <div>
         <Navbar/>
-        <TanggalTable/>
+        <DriverTable/>
     </div>
   )
 }
 
-export default Tanggal
+export default Driver

@@ -71,6 +71,9 @@ const Navbar = () => {
               <Link className="nav-link" to="/tanggal">
                 Tanggal
               </Link>
+              <Link className="nav-link" to="/driver">
+                Driver
+              </Link>
               <Link className="nav-link" to="/user">
                 User
               </Link>
