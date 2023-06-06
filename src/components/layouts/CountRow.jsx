@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { MdArticle, MdDirections, MdCalendarMonth, MdOutlinePersonPin } from "react-icons/md";
+import {
+  MdArticle,
+  MdDirections,
+  MdCalendarMonth,
+  MdOutlinePersonPin,
+} from "react-icons/md";
 import axios from "axios";
 
 const CountRow = () => {
@@ -69,7 +74,6 @@ const CountRow = () => {
   return (
     <div>
       <div className="row m-3 p-2">
-        
         <div className="col-xl-3 col-md-6 mb-4">
           <div className="card shadow h-100 py-2">
             <div className="card-body">

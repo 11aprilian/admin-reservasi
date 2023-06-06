@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Transaksi from "./pages/Transaksi";
 import Rute from "./pages/Rute";
 import Login from "./pages/Login";
+import RegisterAdmin from "./pages/RegisterAdmin";
 import Jam from "./pages/Jam";
 import User from "./pages/User";
 import TransaksiDetail from "./pages/TransaksiDetail";
@@ -17,6 +18,7 @@ import TanggalUpdate from "./pages/TanggalUpdate";
 import Jadwal from "./pages/Jadwal";
 import Driver from "./pages/Driver";
 import DriverOption from "./pages/DriverOption";
+import DriverAdd from "./pages/DriverAdd";
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
         <Route path="/transaksi" element={<Transaksi />} />
         <Route path="/rute" element={<Rute />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<RegisterAdmin />} />
         <Route path="/jam" element={<Jam />} />
         <Route path="/user" element={<User />} />
         <Route path="/transaksi/detail" element={<TransaksiDetail />} />
@@ -40,6 +43,7 @@ function App() {
         <Route path="/jadwal/:id" element={<Jadwal />} />
         <Route path="/driver" element={<Driver />} />
         <Route path="/driver/option/:id" element={<DriverOption />} />
+        <Route path="/driver/add" element={<DriverAdd />} />
       </Routes>
     </>
   );

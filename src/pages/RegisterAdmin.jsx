@@ -4,53 +4,43 @@ import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Navbar from "../components/layouts/Navbar";
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const loginAdmin = async () => {
+  const RegisterAdmin = async () => {
+    let regis = {
+        username: username,
+        password: password,
+      };
     try {
-      let admin = await fetch("http://localhost:3050/admin/login", {
-        method: "POST",
-        headers: {
-          Accept: "*/*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: username, password: password }),
-      });
-
-      admin = await admin.json();
-      const adminID = admin.id;
-      const adminUser = admin.username;
-      console.log(admin);
-      if (admin.token) {
-        localStorage.setItem("adminToken", admin.token);
-        try {
-          localStorage.setItem("adminId", JSON.stringify(adminID));
-          localStorage.setItem("adminUser", JSON.stringify(adminUser));
-        } catch (error) {
-          loginFailed();
-        }
-        await Swal.fire({
-          text: admin.message,
-          icon: "success",
+        const user = await axios.post(
+          "http://localhost:3050/admin/register",
+          regis,
+          {
+            headers: {
+              Accept: "*/*",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(user.data);
+        navigate("/login");
+      } catch (error) {
+        console.log(error);
+        Swal.fire({
+          icon: "error",
+          text: error,
         });
-        navigate("/");
-      } else {
-        throw "Gagal Login!";
       }
-    } catch (error) {
-      console.log(error);
-      loginFailed();
-    }
   };
 
-  const LoginHandle = async () => {
-    loginAdmin();
+  const RegisterHandle = async () => {
+    RegisterAdmin();
   };
 
-  const loginFailed = () => {
+  const RegisterFailed = () => {
     Swal.fire({
       icon: "error",
       text: "Periksa Username atau Password anda kembali!",
@@ -92,14 +82,14 @@ const Login = () => {
           <button
             type="submit"
             className="btn mt-2 btn-outline-danger"
-            onClick={(e) => LoginHandle(e.preventDefault())}
+            onClick={(e) => RegisterHandle(e.preventDefault())}
           >
-            Login
+            Register
           </button>
         </form>
         <div className="mt-2">
-          <Link to="/register" className="text-decoration-none mt-2 text-danger">
-            Register
+          <Link to="/login" className="text-decoration-none mt-2 text-danger">
+            Login
           </Link>
         </div>
       </div>
@@ -107,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

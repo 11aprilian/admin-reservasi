@@ -7,28 +7,26 @@ import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../components/layouts/Breadcrumb";
 import Verifikasi from "../components/layouts/Verifikasi";
 
-const RuteAdd = () => {
-  const [arah, setArah] = useState("");
-  const [harga, setHarga] = useState("");
+const DriverAdd = () => {
+  const [nama, setNama] = useState("");
   const navigate = useNavigate();
 
-  const addRute = async () => {
-    if (arah === "" || harga === "") {
+  const addDriver = async () => {
+    if (nama === "") {
       Swal.fire({
         icon: "error",
         text: "Data Tidak Boleh Kosong!",
       });
     } else {
-      let dataRute = {
-        arah: arah,
-        harga: harga,
+      let dataDriver = {
+        nama: nama
       };
 
       try {
         axios
           .post(
-            "http://localhost:3050/rute",
-            dataRute,
+            "http://localhost:3050/driver",
+            dataDriver,
             {
               headers: {
                 Accept: "*/*",
@@ -39,11 +37,11 @@ const RuteAdd = () => {
           )
           .then(() => {
             Swal.fire({
-                text: "Data Berhasil Disimpan!",
+                text: "Driver Berhasil Disimpan!",
                 icon: "success",
                 showConfirmButton: true,
               });
-              navigate("/rute")
+              navigate("/driver")
           })
           .catch(() => {
             Swal.fire({
@@ -68,34 +66,22 @@ const RuteAdd = () => {
       <div className="container m-3">
         <form>
           <div className="form-group">
-            <label>Arah Travel</label>
+            <label>Nama Driver</label>
             <input
               type="text"
               className="form-control"
-              id="rute"
+              id="Driver"
               onChange={(e) => {
-                setArah(e.target.value);
+                setNama(e.target.value);
               }}
-              placeholder="Masukkan Arah Travel (Cth : TULUNGAGUNG-SURABAYA)"
-            />
-          </div>
-          <div className="form-group">
-            <label>Harga Rute</label>
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              placeholder="Masukkan Harga"
-              onChange={(e) => {
-                setHarga(e.target.value);
-              }}
+              placeholder="Masukkan Nama Driver"
             />
           </div>
 
           <button
             type="submit"
             className="btn mt-2 btn-outline-danger"
-            onClick={(e) => addRute(e.preventDefault())}
+            onClick={(e) => addDriver(e.preventDefault())}
           >
             <AiOutlinePlus />
           </button>
@@ -105,4 +91,4 @@ const RuteAdd = () => {
   );
 };
 
-export default RuteAdd;
+export default DriverAdd;

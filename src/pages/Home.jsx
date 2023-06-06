@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Breadcrumb from "../components/layouts/Breadcrumb";
 import Navbar from "../components/layouts/Navbar";
-import { MdArticle, MdDirections, MdCalendarMonth, MdOutlinePersonPin } from "react-icons/md";
-import axios from "axios";
 import CountRow from "../components/layouts/CountRow";
 import ContentRow from "../components/layouts/ContentRow";
+import Verifikasi from "../components/layouts/Verifikasi";
+
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-light">
+      <Verifikasi />
       <Navbar />
       <CountRow/>
       <ContentRow/>

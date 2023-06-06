@@ -26,7 +26,12 @@ const DriverTable = () => {
   localStorage.setItem("idDriver", idDriver)
 
   return (
-    <div className="container-fluid table-responsive-sm mt-3">
+    <div className="container-fluid table-responsive-sm">
+      <div>
+        <Link to="/driver/add" className="btn btn-sm btn-outline-dark my-3">
+          Tambah Data +
+        </Link>
+      </div>
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>

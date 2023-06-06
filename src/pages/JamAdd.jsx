@@ -5,6 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from '../components/layouts/Breadcrumb';
+import Verifikasi from "../components/layouts/Verifikasi";
 
 const JamAdd = () => {
     const [jam, setJam] = useState("");
@@ -62,6 +63,7 @@ const JamAdd = () => {
   return (
     <div>
         <Navbar />
+        <Verifikasi />
       <div className="container m-3">
         <form>
           <div className="form-group">

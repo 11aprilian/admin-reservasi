@@ -5,6 +5,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../components/layouts/Breadcrumb";
+import Verifikasi from "../components/layouts/Verifikasi";
 
 const RuteUpdate = () => {
   const [arah, setArah] = useState("");
@@ -74,6 +75,7 @@ const RuteUpdate = () => {
   return (
     <div>
       <Navbar />
+      <Verifikasi />
       <div className="container m-3">
         <form>
         <div className="form-group">

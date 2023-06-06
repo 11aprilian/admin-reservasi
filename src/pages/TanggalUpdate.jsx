@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import id from "date-fns/locale/id";
 import { format } from "date-fns";
+import Verifikasi from "../components/layouts/Verifikasi";
 
 registerLocale("id", id);
 setDefaultLocale("id");
@@ -80,6 +81,7 @@ const TanggalUpdate = () => {
   return (
     <div>
       <Navbar />
+      <Verifikasi />
       <div className="container m-3">
         <form>
           <div className="form-group">
