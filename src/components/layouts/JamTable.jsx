@@ -68,16 +68,16 @@ const JamTable = () => {
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">No</th>
             <th scope="col">Jam</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {dataJam.map((Jam) => {
+          {dataJam.map((Jam, index) => {
             return (
               <tr key={Jam.id}>
-                <td>{Jam.id}</td>
+                <td>{index + 1}</td>
                 <td>{Jam.jam}</td>
                 <td>
                 <Link

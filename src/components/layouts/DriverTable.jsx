@@ -35,16 +35,16 @@ const DriverTable = () => {
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">No</th>
             <th scope="col">Nama Driver</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {dataDriver.map((driver) => {
+          {dataDriver.map((driver, index) => {
             return (
               <tr key={driver.id}>
-                <td>{driver.id}</td>
+                <td>{index + 1}</td>
                 <td>{driver.nama}</td>
                 <td>
                 {/* <Link

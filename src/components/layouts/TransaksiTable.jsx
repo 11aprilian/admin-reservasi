@@ -30,6 +30,7 @@ const TransaksiTable = () => {
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>
+            <th scope="col">No</th>
             <th scope="col">ID Transaksi</th>
             <th scope="col">Nama</th>
             <th scope="col">Bank</th>
@@ -37,9 +38,10 @@ const TransaksiTable = () => {
           </tr>
         </thead>
         <tbody>
-          {dataTransaksi.map((transaksi) => {
+          {dataTransaksi.map((transaksi, index) => {
             return (
               <tr key={transaksi.id}>
+                <td>{index + 1}</td>
                 <td>{transaksi.id}</td>
                 <td>{transaksi.nama}</td>
                 <td>{transaksi.bank}</td>

@@ -71,17 +71,17 @@ const RuteTable = () => {
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>
-            <th scope="col">ID</th>
+            <th scope="col">No</th>
             <th scope="col">Arah</th>
             <th scope="col">Harga</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {dataRute.map((rute) => {
+          {dataRute.map((rute, index) => {
             return (
               <tr key={rute.id}>
-                <td>{rute.id}</td>
+                <td>{index + 1}</td>
                 <td>{rute.arah}</td>
                 <td>{rute.harga}</td>
                 <td>
