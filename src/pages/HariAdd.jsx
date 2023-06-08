@@ -15,23 +15,23 @@ registerLocale("id", id);
 setDefaultLocale("id");
 
 const TanggalAdd = () => {
-  const [tanggal, setTanggal] = useState("");
+  const [hari, setHari] = useState("");
   const navigate = useNavigate();
 
   const addTanggal = async () => {
-    if (tanggal === "") {
+    if (hari === "") {
       Swal.fire({
         icon: "error",
         text: "Data Tidak Boleh Kosong!",
       });
     } else {
-      let dataTanggal = {
-        tanggal: tanggal,
+      let data = {
+        hari: hari,
       };
 
       try {
         axios
-          .post("http://localhost:3050/tanggal", dataTanggal, {
+          .post("http://localhost:3050/hari", data, {
             headers: {
               Accept: "*/*",
               "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const TanggalAdd = () => {
               icon: "success",
               showConfirmButton: true,
             });
-            navigate("/tanggal");
+            navigate("/hari");
           })
           .catch(() => {
             Swal.fire({
@@ -62,13 +62,6 @@ const TanggalAdd = () => {
     }
   };
 
-  const handleChange = (date) => {
-    setTanggal(date);
-    const formattedDate = format(date, "d MMMM yyyy", { locale: id });
-    setTanggal(formattedDate);
-    console.log(formattedDate);
-  };
-
   return (
     <div>
       <Navbar />
@@ -76,12 +69,8 @@ const TanggalAdd = () => {
       <div className="container m-3">
         <form>
           <div className="form-group">
-            <label>Tanggal Berangkat</label>
-            <DatePicker
-              className="form-control"
-              value={tanggal}
-              onChange={handleChange}
-            />
+            <label>Hari Berangkat</label>
+            <input type="text" className="form-control" onChange={(e) => setHari(e.target.value)} />
           </div>
           <button
             type="submit"

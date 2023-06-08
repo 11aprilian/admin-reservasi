@@ -32,7 +32,6 @@ const UserTable = () => {
             <th scope="col">ID</th>
             <th scope="col">Email</th>
             <th scope="col">Username</th>
-            <th scope="col">Dibuat</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -43,7 +42,6 @@ const UserTable = () => {
                 <td>{user.id}</td>
                 <td>{user.email}</td>
                 <td>{user.username}</td>
-                <td>{user.createdAt}</td>
                 <td>
                   <button
                     className="btn btn-sm m-1 btn-outline-secondary"

@@ -12,10 +12,12 @@ import RuteAdd from "./pages/RuteAdd";
 import RuteUpdate from "./pages/RuteUpdate";
 import JamAdd from "./pages/JamAdd";
 import JamUpdate from "./pages/JamUpdate";
-import Tanggal from "./pages/Tanggal";
-import TanggalAdd from "./pages/TanggalAdd";
-import TanggalUpdate from "./pages/TanggalUpdate";
+import Hari from "./pages/Hari";
+import HariAdd from "./pages/HariAdd";
+import HariUpdate from "./pages/HariUpdate";
 import Jadwal from "./pages/Jadwal";
+import JadwalAdd from "./pages/JadwalAdd";
+import JadwalUpdate from "./pages/JadwalUpdate";
 import Driver from "./pages/Driver";
 import DriverOption from "./pages/DriverOption";
 import DriverAdd from "./pages/DriverAdd";
@@ -27,20 +29,22 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/transaksi" element={<Transaksi />} />
+        <Route path="/transaksi/detail/:id" element={<TransaksiDetail />} />
         <Route path="/rute" element={<Rute />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterAdmin />} />
         <Route path="/jam" element={<Jam />} />
         <Route path="/user" element={<User />} />
-        <Route path="/transaksi/detail" element={<TransaksiDetail />} />
         <Route path="/rute/add" element={<RuteAdd />} />
-        <Route path="/rute/update" element={<RuteUpdate />} />
+        <Route path="/rute/update/:id" element={<RuteUpdate />} />
         <Route path="/jam/add" element={<JamAdd />} />
-        <Route path="/jam/update" element={<JamUpdate />} />
-        <Route path="/tanggal" element={<Tanggal />} />
-        <Route path="/tanggal/add" element={<TanggalAdd />} />
-        <Route path="/tanggal/update" element={<TanggalUpdate />} />
-        <Route path="/jadwal/:id" element={<Jadwal />} />
+        <Route path="/jam/update/:id" element={<JamUpdate />} />
+        <Route path="/hari" element={<Hari />} />
+        <Route path="/hari/add" element={<HariAdd />} />
+        <Route path="/hari/update" element={<HariUpdate />} />
+        <Route path="/jadwal/" element={<Jadwal />} />
+        <Route path="/jadwal/add" element={<JadwalAdd />} />
+        <Route path="/jadwal/update/:id" element={<JadwalUpdate />} />
         <Route path="/driver" element={<Driver />} />
         <Route path="/driver/option/:id" element={<DriverOption />} />
         <Route path="/driver/add" element={<DriverAdd />} />

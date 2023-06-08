@@ -56,8 +56,7 @@ const ContentRow = () => {
                   <div className="h5 mb-0 font-weight-bold text-secondary">
                     <p>
                       <small>
-                        Mengatur Rute, Jam Keberangkatan, Tanggal Keberangkatan,
-                        dan Driver.
+                        Mengatur Rute, dan Jadwal Berangkat.
                       </small>
                     </p>
                   </div>
@@ -83,14 +82,13 @@ const ContentRow = () => {
                   <div className="h5 mb-0 my-2 font-weight-bold text-secondary">
                     <ul className="list-group">
                       <li className="list-group-item small text-secondary">
-                        Membuat jadwal keberangkatan dengan menggabungkan jam
-                        dan tanggal pada menu{" "}
+                        Menambahkan driver atau mengganti driver pada {" "}
                         <span>
                           <Link
-                            to={"/tanggal"}
+                            to={"/jadwal"}
                             className="text-decoration-none"
                           >
-                            Tanggal
+                            Jadwal
                           </Link>
                         </span>
                       </li>
@@ -100,15 +98,6 @@ const ContentRow = () => {
                         <span>
                           <Link to={"/driver"} className="text-decoration-none">
                             Driver
-                          </Link>
-                        </span>
-                      </li>
-                      <li className="list-group-item small text-secondary">
-                        Menginputkan driver sesuai dengan jadwal pada transaksi
-                        yang masuk di menu{" "}
-                        <span>
-                        <Link to={"/transaksi"} className="text-decoration-none">
-                            Transaksi
                           </Link>
                         </span>
                       </li>

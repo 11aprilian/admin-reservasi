@@ -37,7 +37,6 @@ const DriverTable = () => {
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nama Driver</th>
-            <th scope="col">Didaftarkan</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -47,14 +46,13 @@ const DriverTable = () => {
               <tr key={driver.id}>
                 <td>{driver.id}</td>
                 <td>{driver.nama}</td>
-                <td>{driver.createdAt}</td>
                 <td>
-                <Link
+                {/* <Link
                 to={`/driver/option/${driver.id}`}
                     className="btn btn-sm m-1 btn-outline-primary me-4"
                   >
                     Atur Jadwal
-                  </Link>
+                  </Link> */}
                   <button
                     className="btn btn-sm m-1 btn-outline-secondary"
                     onMouseEnter={() => {

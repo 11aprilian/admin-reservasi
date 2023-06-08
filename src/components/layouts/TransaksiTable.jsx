@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 const TransaksiTable = () => {
   const [dataTransaksi, setDataTransaksi] = useState([]);
-  const [idTrans, setIdTrans] = useState("");
   const navigate = useNavigate();
 
   const fetchTransaksi = () => {
@@ -20,15 +19,6 @@ const TransaksiTable = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const transDetail = () => {
-    localStorage.setItem("idTrans", idTrans);
-    if (!localStorage.idTrans) {
-      localStorage.setItem("idTrans", idTrans);
-    } else {
-      navigate("/transaksi/detail");
-    }
   };
 
   useEffect(() => {
@@ -53,10 +43,8 @@ const TransaksiTable = () => {
                 <td>{transaksi.id}</td>
                 <td>{transaksi.nama}</td>
                 <td>{transaksi.bank}</td>
-                <td><button className="btn btn-sm m-1 btn-outline-danger"
-                onFocus={() => {setIdTrans(transaksi.id)}}
-                onClick={() => {transDetail()}}
-                ><BsInfoCircle/></button></td>
+                <td><Link to={`/transaksi/detail/${transaksi.id}`} className="btn btn-sm m-1 btn-outline-danger"
+                ><BsInfoCircle/></Link></td>
               </tr>
             );
           })}

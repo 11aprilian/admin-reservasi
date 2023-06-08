@@ -15,24 +15,24 @@ registerLocale("id", id);
 setDefaultLocale("id");
 
 const TanggalUpdate = () => {
-  const [tanggal, setTanggal] = useState("");
-  const idTanggal = localStorage.getItem("idTanggal");
+  const [hari, setHari] = useState("");
+  const idHari = localStorage.getItem("idHari");
   const navigate = useNavigate();
 
-  const fetchTanggalById = () => {
-    axios.get("http://localhost:3050/tanggal/" + id).then((result) => {
+  const fetchHariById = () => {
+    axios.get("http://localhost:3050/hari/" + id).then((result) => {
       const responseAPI = result.data;
-      setTanggal(responseAPI.Tanggal);
+      setHari(responseAPI.Tanggal);
     });
   };
 
-  const updateTanggal = () => {
+  const updateHari = () => {
     let dataTanggal = {
-      tanggal: tanggal,
+      hari: hari,
     };
 
     Swal.fire({
-      text: "Update Jadwal?",
+      text: "Update Hari?",
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "light",
@@ -41,7 +41,7 @@ const TanggalUpdate = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put("http://localhost:3050/tanggal/" + idTanggal, dataTanggal, {
+          .put("http://localhost:3050/hari/" + idHari, dataTanggal, {
             headers: {
               Accept: "*/*",
               "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const TanggalUpdate = () => {
               icon: "success",
               showConfirmButton: true,
             });
-            navigate("/tanggal");
+            navigate("/hari");
           })
           .catch(() => {
             Swal.fire({
@@ -65,18 +65,11 @@ const TanggalUpdate = () => {
       }
     });
   };
-
-  const handleChange = (date) => {
-    setTanggal(date);
-    const formattedDate = format(date, "d MMMM yyyy", { locale: id });
-    setTanggal(formattedDate);
-    console.log(formattedDate);
-  };
-
+  
   useEffect(() => {
-    fetchTanggalById();
+    fetchHariById();
   }, []);
-  console.log(tanggal);
+  console.log(hari);
 
   return (
     <div>
@@ -85,29 +78,25 @@ const TanggalUpdate = () => {
       <div className="container m-3">
         <form>
           <div className="form-group">
-            <label>ID Jadwal</label>
+            <label>ID Hari</label>
             <input
               type="text"
               className="bg-light form-control"
               id="idTgl"
-              value={idTanggal}
+              value={idHari}
               readOnly
             />
           </div>
 
           <div className="form-group">
-            <label>Tanggal Berangkat</label>
-            <DatePicker
-              className="form-control"
-              value={tanggal}
-              onChange={handleChange}
-            />
+            <label>Hari Berangkat</label>
+            <input type="text" className="form-control" onChange={(e) => setHari(e.target.value)} />
           </div>
 
           <button
             type="submit"
             className="btn mt-2 btn-outline-danger"
-            onClick={(e) => updateTanggal(e.preventDefault())}
+            onClick={(e) => updateHari(e.preventDefault())}
           >
             <BsFillPencilFill />
           </button>

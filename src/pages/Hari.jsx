@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/layouts/Navbar'
-import TanggalTable from '../components/layouts/TanggalTable'
+import HariTable from '../components/layouts/HariTable'
 import Verifikasi from "../components/layouts/Verifikasi";
 
 const Tanggal = () => {
@@ -8,7 +8,7 @@ const Tanggal = () => {
     <div>
         <Navbar/>
         <Verifikasi />
-        <TanggalTable/>
+        <HariTable/>
     </div>
   )
 }

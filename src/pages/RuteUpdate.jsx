@@ -3,14 +3,14 @@ import Navbar from "../components/layouts/Navbar";
 import Swal from "sweetalert2";
 import { BsFillPencilFill } from "react-icons/bs";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Breadcrumb from "../components/layouts/Breadcrumb";
 import Verifikasi from "../components/layouts/Verifikasi";
 
 const RuteUpdate = () => {
   const [arah, setArah] = useState("");
   const [harga, setHarga] = useState("");
-  const id = localStorage.getItem("idRute");
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const fetchRuteById = () => {

@@ -6,24 +6,24 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const JamTable = () => {
-  const [dataJadwal, setDataJadwal] = useState([]);
-  const [idJadwal, setIdJadwal] = useState("");
+  const [dataJam, setDataJam] = useState([]);
+  const [idJam, setIdJam] = useState("");
   const navigate = useNavigate();
 
-  const fetchJadwal = () => {
+  const fetchJam = () => {
     axios
-      .get("http://localhost:3050/jadwal")
+      .get("http://localhost:3050/jam")
       .then((result) => {
         const responseAPI = result.data;
 
-        setDataJadwal(responseAPI.data);
+        setDataJam(responseAPI.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const deleteJadwal = () => {
+  const deleteJam = () => {
     Swal.fire({
       text: "Hapus Jadwal?",
       icon: "question",
@@ -35,8 +35,8 @@ const JamTable = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            "http://localhost:3050/jadwal/" +
-              idJadwal,
+            "http://localhost:3050/jam/" +
+              idJam,
             {
               headers: {
                 Accept: "*/*",
@@ -55,20 +55,10 @@ const JamTable = () => {
     });
   };
 
-
-  const jadwalUpdate = () => {
-    localStorage.setItem("idJadwal", idJadwal);
-    if (!localStorage.idJadwal) {
-      localStorage.setItem("idJadwal", idJadwal);
-    } else {
-      navigate("/jam/update");
-    }
-  };
-
   useEffect(() => {
-    fetchJadwal();
+    fetchJam();
   }, []);
-  console.log(idJadwal);
+  console.log(idJam);
 
   return (
     <div className="container-fluid table-responsive-sm">
@@ -80,37 +70,28 @@ const JamTable = () => {
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Jam</th>
-            <th scope="col">Dibuat</th>
-            <th scope="col">DiUpdate</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {dataJadwal.map((jadwal) => {
+          {dataJam.map((Jam) => {
             return (
-              <tr key={jadwal.id}>
-                <td>{jadwal.id}</td>
-                <td>{jadwal.jam}</td>
-                <td>{jadwal.createdAt}</td>
-                <td>{jadwal.updatedAt}</td>
+              <tr key={Jam.id}>
+                <td>{Jam.id}</td>
+                <td>{Jam.jam}</td>
                 <td>
-                  <button
-                    className="btn btn-sm m-1 btn-outline-danger me-4"
-                    onFocus={() => {
-                      setIdJadwal(jadwal.id);
-                    }}
-                    onClick={() => {
-                      jadwalUpdate();
-                    }}
+                <Link
+                    to={`/jam/update/${Jam.id}`}
+                    className="btn btn-sm m-1 btn-outline-primary me-4"
                   >
-                    <BsFillPencilFill/>
-                  </button>
+                    <BsFillPencilFill />{" "}Ubah Jam
+                  </Link>
                   <button
                     className="btn btn-sm m-1 btn-outline-secondary"
                     onMouseEnter={() => {
-                      setIdJadwal(jadwal.id);
+                      setIdJam(Jam.id);
                     }}
-                    onClick={(e) => deleteJadwal(e.preventDefault())}
+                    onClick={(e) => deleteJam(e.preventDefault())}
                   >
                     <BsFillTrash3Fill/>
                   </button>

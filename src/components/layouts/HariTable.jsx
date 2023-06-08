@@ -6,27 +6,27 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { id } from "date-fns/locale";
 
-const JamTable = () => {
-  const [dataTanggal, setDataTanggal] = useState([]);
-  const [idTanggal, setIdTanggal] = useState("");
+const HariTable = () => {
+  const [dataHari, setDataHari] = useState([]);
+  const [idHari, setIdHari] = useState("");
   const navigate = useNavigate();
 
   const fetchTanggal = () => {
     axios
-      .get("http://localhost:3050/tanggal")
+      .get("http://localhost:3050/hari")
       .then((result) => {
         const responseAPI = result.data;
 
-        setDataTanggal(responseAPI.data);
+        setDataHari(responseAPI.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const deleteTanggal = () => {
+  const deleteHari = () => {
     Swal.fire({
-      text: "Hapus Tanggal?",
+      text: "Hapus Hari?",
       icon: "question",
       showCancelButton: true,
       cancelButtonColor: "light",
@@ -36,8 +36,8 @@ const JamTable = () => {
       if (result.isConfirmed) {
         axios
           .delete(
-            "http://localhost:3050/tanggal/" +
-              idTanggal,
+            "http://localhost:3050/hari/" +
+              idHari,
             {
               headers: {
                 Accept: "*/*",
@@ -57,70 +57,60 @@ const JamTable = () => {
   };
 
 
-  const TanggalUpdate = () => {
-    localStorage.setItem("idTanggal", idTanggal);
-    if (!localStorage.idTanggal) {
-      localStorage.setItem("idTanggal", idTanggal);
+  const hariUpdate = () => {
+    localStorage.setItem("idHari", idHari);
+    if (!localStorage.idHari) {
+      localStorage.setItem("idHari", idHari);
     } else {
-      navigate("/tanggal/update");
+      navigate("/hari/update");
     }
   };
 
   useEffect(() => {
     fetchTanggal();
   }, []);
-  console.log(idTanggal);
+  console.log(idHari);
 
   return (
     <div className="container-fluid table-responsive-sm">
       <div>
-        <Link to="/tanggal/add" className="btn btn-sm btn-outline-dark my-3">Tambah Data +</Link>
+        <Link to="/hari/add" className="btn btn-sm btn-outline-dark my-3">Tambah Data +</Link>
       </div>
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tanggal</th>
-            <th scope="col">Dibuat</th>
-            <th scope="col">DiUpdate</th>
+            <th scope="col">No</th>
+            <th scope="col">Hari</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          {dataTanggal.map((Tanggal) => {
+          {dataHari.map((Hari, index) => {
             return (
-              <tr key={Tanggal.id}>
-                <td>{Tanggal.id}</td>
-                <td>{Tanggal.tanggal}</td>
-                <td>{Tanggal.createdAt}</td>
-                <td>{Tanggal.updatedAt}</td>
+              <tr key={Hari.id}>
+                <td>{index + 1}</td>
+                <td>{Hari.hari}</td>
                 <td>
-                <Link
-                to={`/jadwal/${Tanggal.id}`}
-                    className="btn btn-sm m-1 btn-outline-primary me-4"
-                  >
-                    Buat Jadwal
-                  </Link>
-                  <button
+                  {/* <button
                     className="btn btn-sm m-1 btn-outline-danger me-4"
                     onFocus={() => {
-                      setIdTanggal(Tanggal.id);
+                      setIdHari(Hari.id);
                     }}
                     onClick={() => {
-                      TanggalUpdate();
+                      hariUpdate();
                     }}
                   >
                     <BsFillPencilFill/>
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="btn btn-sm m-1 btn-outline-secondary"
                     onMouseEnter={() => {
-                      setIdTanggal(Tanggal.id);
+                      setIdHari(Hari.id);
                     }}
-                    onClick={(e) => deleteTanggal(e.preventDefault())}
+                    onClick={(e) => deleteHari(e.preventDefault())}
                   >
                     <BsFillTrash3Fill/>
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             );
@@ -131,4 +121,4 @@ const JamTable = () => {
   );
 };
 
-export default JamTable;
+export default HariTable;

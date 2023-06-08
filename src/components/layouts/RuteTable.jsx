@@ -55,15 +55,6 @@ const RuteTable = () => {
     });
   };
 
-  const ruteUpdate = () => {
-    localStorage.setItem("idRute", idRute);
-    if (!localStorage.idRute) {
-      localStorage.setItem("idRute", idRute);
-    } else {
-      navigate("/rute/update");
-    }
-  };
-
   useEffect(() => {
     fetchRute();
   }, []);
@@ -83,8 +74,6 @@ const RuteTable = () => {
             <th scope="col">ID</th>
             <th scope="col">Arah</th>
             <th scope="col">Harga</th>
-            <th scope="col">Dibuat</th>
-            <th scope="col">DiUpdate</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -95,20 +84,13 @@ const RuteTable = () => {
                 <td>{rute.id}</td>
                 <td>{rute.arah}</td>
                 <td>{rute.harga}</td>
-                <td>{rute.createdAt}</td>
-                <td>{rute.updatedAt}</td>
                 <td>
-                  <button
-                    className="btn m-1 btn-sm btn-outline-danger me-4"
-                    onFocus={() => {
-                      setIdRute(rute.id);
-                    }}
-                    onClick={() => {
-                      ruteUpdate();
-                    }}
+                <Link
+                    to={`/rute/update/${rute.id}`}
+                    className="btn btn-sm m-1 btn-outline-primary me-4"
                   >
-                    <BsFillPencilFill />
-                  </button>
+                    <BsFillPencilFill />{" "}Edit Rute
+                  </Link>
                   <button
                     className="btn m-1 btn-sm btn-outline-secondary"
                     onMouseEnter={() => {

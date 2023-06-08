@@ -62,15 +62,18 @@ const Navbar = () => {
               <Link className="nav-link" to="/transaksi">
                 Transaksi
               </Link>
+              <Link className="nav-link" to="/jadwal">
+                Jadwal
+              </Link>
               <Link className="nav-link" to="/rute">
                 Rute
               </Link>
               <Link className="nav-link" to="/jam">
                 Jam
               </Link>
-              <Link className="nav-link" to="/tanggal">
-                Tanggal
-              </Link>
+              {/* <Link className="nav-link" to="/hari">
+                Hari
+              </Link> */}
               <Link className="nav-link" to="/driver">
                 Driver
               </Link>

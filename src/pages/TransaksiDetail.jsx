@@ -3,19 +3,20 @@ import React, { useEffect, useState } from "react";
 import Breadcrumb from "../components/layouts/Breadcrumb";
 import Navbar from "../components/layouts/Navbar";
 import Swal from "sweetalert2";
+import { useNavigate, useParams } from "react-router-dom";
 import Verifikasi from "../components/layouts/Verifikasi";
 
 const TransaksiDetail = () => {
-  const idTrans = localStorage.getItem("idTrans");
+  const { id } = useParams();
   const [dataTrans, setDataTrans] = useState([]);
-  const [dataDriverOpt, setDataDriverOpt] = useState([]);
 
   const [nama, setNama] = useState("");
-  const [id, setId] = useState("");
+  const [idTrans, setIdTrans] = useState("");
   const [tglTransaksi, setTglTransaksi] = useState("");
   const [alamat, setAlamat] = useState("");
   const [rute, setRute] = useState("");
   const [tglBerangkat, setTglBerangkat] = useState("");
+  const [hari, setHari] = useState("");
   const [jam, setJam] = useState("");
   const [telepon, setTelepon] = useState("");
   const [bank, setBank] = useState("");
@@ -25,106 +26,40 @@ const TransaksiDetail = () => {
   const [userId, setUserId] = useState("");
   const [ruteId, setRuteId] = useState("");
   const [jadwalId, setJadwalId] = useState("");
-  const [driverId, setDriverId] = useState("Belum Diatur");
-  const [driverOptId, setDriverOptId] = useState("");
+  const [driverId, setDriverId] = useState("");
   const [driverName, setDriverName] = useState("");
 
-  const [idDriver, setIdDriver] = useState("Belum Diatur");
 
   const fetchTransaksi = () => {
     axios
-      .get("http://localhost:3050/transaksi/" + idTrans)
+      .get("http://localhost:3050/transaksi/" + id)
       .then((result) => {
         const responseAPI = result.data;
 
         setDataTrans(responseAPI.data);
         setNama(responseAPI.data.nama);
-        setId(responseAPI.data.id);
+        setIdTrans(responseAPI.data.id);
         setAlamat(responseAPI.data.alamat);
-        setTglBerangkat(responseAPI.data.Jadwal_driver.Tanggal.tanggal);
-        setJam(responseAPI.data.Jadwal_driver.Jadwal.jam);
+        setTglBerangkat(responseAPI.data.tanggal);
+        setJam(responseAPI.data.Jadwal_driver.Jam.jam);
+        setHari(responseAPI.data.Jadwal_driver.Hari.hari);
         setTelepon(responseAPI.data.no_hp);
         setBank(responseAPI.data.bank);
         setVa(responseAPI.data.va_number);
         setStatus(responseAPI.data.paid);
         setTotal(responseAPI.data.total);
         setTglTransaksi(responseAPI.data.createdAt);
-        setRute(responseAPI.data.Rute.arah);
+        setRute(responseAPI.data.Jadwal_driver.Rute.arah);
         setUserId(responseAPI.data.User.id);
-        setRuteId(responseAPI.data.Rute.id);
+        setRuteId(responseAPI.data.Jadwal_driver.Rute.id);
         setJadwalId(responseAPI.data.JadwalDriverId);
-        setDriverId(responseAPI.data.DriverId);
-        setDriverName(responseAPI.data.Driver.nama);
-        setDriverId(responseAPI.data.Driver.id);
+        setDriverId(responseAPI.data.Jadwal_driver.DriverId);
+        setDriverName(responseAPI.data.Jadwal_driver.Driver.nama);
+
       })
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const fetchDriverOptionByJadwal = () => {
-    axios
-      .get("http://localhost:3050/driveroption/jadwaldriver/" + jadwalId)
-      .then((result) => {
-        const responseAPI = result.data.data;
-        setDataDriverOpt(responseAPI);
-      });
-  };
-
-  const setDriver = () => {
-    let driver = {
-      DriverId: idDriver,
-    };
-
-    Swal.fire({
-      text: "Set Driver?",
-      icon: "question",
-      showCancelButton: true,
-      cancelButtonColor: "light",
-      confirmButtonText: "Iya!",
-      cancelButtonText: "Tidak!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .put("http://localhost:3050/transaksi/" + id, driver, {
-            headers: {
-              Accept: "*/*",
-              "Content-Type": "application/json",
-              authorization: localStorage.getItem("adminToken"),
-            },
-          })
-          .then(() => {
-            Swal.fire({
-              text: "Driver Berhasil Disimpan!",
-              icon: "success",
-              showConfirmButton: true,
-            });
-          })
-          .then(() => {
-            updateOptStatus();
-            fetchTransaksi();
-          })
-          .catch(() => {
-            Swal.fire({
-              text: "Anda Tidak Memiliki Akses!",
-              icon: "error",
-            });
-          });
-      }
-    });
-  };
-
-  const updateOptStatus = () => {
-    let status = {
-      status: "unavailable",
-    };
-    axios.put("http://localhost:3050/driveroption/" + driverOptId, status, {
-      headers: {
-        Accept: "*/*",
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("adminToken"),
-      },
-    });
   };
 
   useEffect(() => {
@@ -132,8 +67,6 @@ const TransaksiDetail = () => {
   }, []);
 
   console.log(driverId);
-  console.log(idDriver)
-  ;
   return (
     <div>
       <Navbar />
@@ -141,7 +74,7 @@ const TransaksiDetail = () => {
       <div>
         <div className="card m-3">
           <div className="card-body">
-            <h5 className="card-title ms-2 fw-bold text-danger">{id}</h5>
+            <h5 className="card-title ms-2 fw-bold text-danger">{idTrans}</h5>
             <h6 className="card-subtitle ms-2 mb-2 text-muted text-capitalize">
               {rute}
             </h6>
@@ -166,7 +99,12 @@ const TransaksiDetail = () => {
                   <tr>
                     <td>Tgl Berangkat</td>
                     <td> : </td>
-                    <td>{tglBerangkat}</td>
+                    <td>{hari},{" "}{tglBerangkat}</td>
+                  </tr>
+                  <tr>
+                    <td>Rute</td>
+                    <td> : </td>
+                    <td>{rute}</td>
                   </tr>
                   <tr>
                     <td>Jam Berangkat</td>
@@ -199,6 +137,11 @@ const TransaksiDetail = () => {
                     <td>{status}</td>
                   </tr>
                   <tr>
+                    <td>Nama Driver</td>
+                    <td> : </td>
+                    <td>{driverName}</td>
+                  </tr>
+                  <tr>
                     <td>ID User</td>
                     <td> : </td>
                     <td>
@@ -223,7 +166,7 @@ const TransaksiDetail = () => {
                     </td>
                   </tr>
                   <tr>
-                    <td>ID Jadwal Driver</td>
+                    <td>ID Jadwal</td>
                     <td> : </td>
                     <td>
                       <input
@@ -243,55 +186,7 @@ const TransaksiDetail = () => {
                         value={driverId}
                         disabled
                       />
-
-                      {driverId === null && (
-                        <select
-                        id="rute"
-                        className="form-control-sm"
-                        onChange={(e) => {
-                          setIdDriver(e.target.value);
-                          setDriverOptId(
-                            e.target.options[
-                              e.target.selectedIndex
-                            ].getAttribute("data-key")
-                          );
-                        }}
-                        onFocus={() => {
-                          fetchDriverOptionByJadwal();
-                        }}
-                      >
-                        <option>Pilih Driver</option>
-                        {dataDriverOpt.map((driverOpt) => {
-                          return (
-                            <option
-                              key={driverOpt.id}
-                              data-key={driverOpt.id}
-                              value={driverOpt.DriverId}
-                            >
-                              {driverOpt.Driver.nama}
-                            </option>
-                          );
-                        })}
-                      </select>
-                      )}
-
-                      {driverId === null && (
-                        <button
-                          className="btn btn-sm btn-danger"
-                          onClick={() => {
-                            setDriver();
-                          }}
-                        >
-                          Submit
-                        </button>
-                      )}
-                      
                     </td>
-                  </tr>
-                  <tr>
-                    <td>Nama Driver</td>
-                    <td> : </td>
-                    <td>{driverName}</td>
                   </tr>
                   <tr></tr>
                 </tbody>

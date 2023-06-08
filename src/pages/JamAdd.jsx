@@ -18,15 +18,15 @@ const JamAdd = () => {
             text: "Data Tidak Boleh Kosong!",
           });
         } else {
-          let dataJadwal = {
+          let data = {
             jam: jam
           };
     
           try {
             axios
               .post(
-                "http://localhost:3050/jadwal",
-                dataJadwal,
+                "http://localhost:3050/jam",
+                data,
                 {
                   headers: {
                     Accept: "*/*",
