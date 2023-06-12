@@ -114,6 +114,12 @@ const RekapTable = () => {
       pdf.autoTable({
         html: table,
         startY: tableY,
+        styles: {
+          textColor: "#000000",
+          fillColor: "#FFFFFF", // Set the background color of cells to transparent
+          lineColor: "#000000", // Set the border color to black
+          lineWidth: 0.1, // Set the border width
+          }
       });
 
       // Restore the excluded columns

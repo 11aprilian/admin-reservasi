@@ -31,9 +31,6 @@ const TransaksiTable = () => {
         <Link to="/transaksi/rekap" className="col-md-2 btn btn-sm btn-outline-primary mb-3 me-2">
           Rekap Transaksi
         </Link>
-        <Link to="/transaksi/rekap" className="col-md-2 btn btn-sm btn-outline-primary mb-3 me-2">
-          Laporan Transaksi
-        </Link>
       </div>
       <table className="table">
         <thead className="thead-dark bg-dark text-white">

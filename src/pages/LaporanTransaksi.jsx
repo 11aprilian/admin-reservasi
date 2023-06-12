@@ -94,7 +94,7 @@ const LaporanTransaksi = () => {
         pdf.setFontSize(12)
       );
       pdf.text(
-        `Nama Driver : ${dataDriver.nama}`,
+        `Driver : ${dataDriver.nama}`,
         670,
         85,
         pdf.setFontSize(12)
@@ -111,6 +111,14 @@ const LaporanTransaksi = () => {
       pdf.autoTable({
         html: "#table-to-print",
         startY: tableY,
+        theme: "grid", // Set the table theme to grid for visible borders
+        styles: {
+        textColor: "#000000",
+        fillColor: "#FFFFFF", // Set the background color of cells to transparent
+        lineColor: "#000000", // Set the border color to black
+        lineWidth: 0.1,
+        fontSize: 9 // Set the border width
+        }
       });
 
       const blob = pdf.output("blob");
@@ -163,7 +171,7 @@ const LaporanTransaksi = () => {
           </div>
         </div>
         <table
-          className="table small table-bordered border-dark"
+          className="table small"
           id="table-to-print"
         >
           <thead className="thead-dark bg-dark text-white">
