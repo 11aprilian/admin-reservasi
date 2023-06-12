@@ -92,7 +92,7 @@ const ContentRow = () => {
                           </Link>
                         </span>
                       </li>
-                      <li className="list-group-item small text-secondary">
+                      {/* <li className="list-group-item small text-secondary">
                         Menentukan jadwal keberangkatan yang akan digunakan
                         driver pada menu{" "}
                         <span>
@@ -100,7 +100,7 @@ const ContentRow = () => {
                             Driver
                           </Link>
                         </span>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>

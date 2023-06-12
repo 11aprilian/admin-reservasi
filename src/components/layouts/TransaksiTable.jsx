@@ -27,6 +27,14 @@ const TransaksiTable = () => {
 
   return (
     <div className="container-fluid table-responsive-sm mt-3">
+      <div className="row container">
+        <Link to="/transaksi/rekap" className="col-md-2 btn btn-sm btn-outline-primary mb-3 me-2">
+          Rekap Transaksi
+        </Link>
+        <Link to="/transaksi/rekap" className="col-md-2 btn btn-sm btn-outline-primary mb-3 me-2">
+          Laporan Transaksi
+        </Link>
+      </div>
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
           <tr>
@@ -45,8 +53,14 @@ const TransaksiTable = () => {
                 <td>{transaksi.id}</td>
                 <td>{transaksi.nama}</td>
                 <td>{transaksi.bank}</td>
-                <td><Link to={`/transaksi/detail/${transaksi.id}`} className="btn btn-sm m-1 btn-outline-danger"
-                ><BsInfoCircle/></Link></td>
+                <td>
+                  <Link
+                    to={`/transaksi/detail/${transaksi.id}`}
+                    className="btn btn-sm m-1 btn-outline-danger"
+                  >
+                    <BsInfoCircle />
+                  </Link>
+                </td>
               </tr>
             );
           })}

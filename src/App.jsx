@@ -21,6 +21,8 @@ import JadwalUpdate from "./pages/JadwalUpdate";
 import Driver from "./pages/Driver";
 import DriverOption from "./pages/DriverOption";
 import DriverAdd from "./pages/DriverAdd";
+import RekapTransaksi from "./pages/RekapTransaksi";
+import LaporanTransaksi from "./pages/LaporanTransaksi";
 
 
 function App() {
@@ -48,6 +50,8 @@ function App() {
         <Route path="/driver" element={<Driver />} />
         <Route path="/driver/option/:id" element={<DriverOption />} />
         <Route path="/driver/add" element={<DriverAdd />} />
+        <Route path="/transaksi/rekap" element={<RekapTransaksi />} />
+        <Route path="/transaksi/laporan/:driverId/:tglAwal/:tglAkhir" element={<LaporanTransaksi />} />
       </Routes>
     </>
   );
