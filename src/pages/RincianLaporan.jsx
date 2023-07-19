@@ -179,7 +179,7 @@ const RincianLaporan = () => {
         </div>
       </div>
         <table
-          className="table small"
+          className="table small table-striped table-bordered"
           id="table-to-print"
         >
           <thead className="thead-dark bg-dark text-white">

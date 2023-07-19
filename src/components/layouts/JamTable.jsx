@@ -65,7 +65,7 @@ const JamTable = () => {
       <div>
         <Link to="/jam/add" className="btn btn-sm btn-outline-dark my-3">Tambah Data +</Link>
       </div>
-      <table className="table">
+      <table className="table table-striped table-bordered">
         <thead className="thead-dark bg-dark text-white">
           <tr>
             <th scope="col">No</th>

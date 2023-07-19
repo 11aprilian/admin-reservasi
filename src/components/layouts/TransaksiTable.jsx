@@ -35,7 +35,7 @@ const TransaksiTable = () => {
           Rincian Transaksi
         </Link>
       </div>
-      <table className="table">
+      <table className="table table-striped table-bordered">
         <thead className="thead-dark bg-dark text-white">
           <tr>
             <th scope="col">No</th>
@@ -54,7 +54,7 @@ const TransaksiTable = () => {
                 <td>{transaksi.id}</td>
                 <td>{transaksi.nama}</td>
                 <td>{transaksi.bank}</td>
-                <td>{transaksi.paid}</td>
+                <td>{transaksi.paid.toUpperCase()}</td>
                 <td>
                   <Link
                     to={`/transaksi/detail/${transaksi.id}`}

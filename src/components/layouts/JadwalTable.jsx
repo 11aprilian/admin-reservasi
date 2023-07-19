@@ -107,7 +107,7 @@ const JadwalTable = () => {
         })}
       </div>
 
-      <table className="table">
+      <table className="table table-striped table-bordered">
         <thead className="thead-dark bg-dark text-white">
           <tr>
           <th scope="col">No</th>

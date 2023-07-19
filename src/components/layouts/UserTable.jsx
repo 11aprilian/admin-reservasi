@@ -26,7 +26,7 @@ const UserTable = () => {
 
   return (
     <div className="container-fluid table-responsive-sm mt-3">
-      <table className="table">
+      <table className="table table-striped table-bordered">
         <thead className="thead-dark bg-dark text-white">
           <tr>
             <th scope="col">ID</th>

@@ -191,7 +191,7 @@ const RekapTable = () => {
           </div>
         </div>
       </div>
-      <table className="table" id="table-to-print">
+      <table className="table table-striped table-bordered" id="table-to-print">
         <thead className="thead-dark bg-dark text-white">
           <tr>
             <th scope="col">Nama Driver</th>
