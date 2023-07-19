@@ -2,24 +2,31 @@ import Navbar from "../components/layouts/Navbar";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import moment from "moment";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-const LaporanTransaksi = () => {
-  const { driverId, tglAwal, tglAkhir } = useParams();
+const RincianLaporan = () => {
+  const [tglAwal, setTglAwal] = useState("2023-01-01");
+  const [tglAkhir, setTglAkhir] = useState(() => {
+    const tgl = new Date();
+    var current = new Date(tgl);
+    current.setDate(tgl.getDate() + 1);
+    return current.toISOString().split('T')[0]
+  });
+
+  const [selected, setSelected] = useState("");
 
   const [dataLaporan, setDataLaporan] = useState([]);
-  const [dataDriver, setDataDriver] = useState([]);
 
   const [totalPendapatan, setTotalPendapatan] = useState("");
 
   const fetchLaporan = () => {
     axios
       .get(
-        "http://localhost:3050/transaksi/report/" +
-          driverId +
-          "/" +
+        "http://localhost:3050/transaksi/report/all/" +
           tglAwal +
           "/" +
           tglAkhir
@@ -39,17 +46,15 @@ const LaporanTransaksi = () => {
       });
   };
 
-  const fetchDriver = () => {
-    axios
-      .get("http://localhost:3050/driver/" + driverId)
-      .then((result) => {
-        const responseAPI = result.data;
+  const handleStartDate = (date) => {
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    setTglAwal(formattedDate);
+    setSelected(date);
+  };
 
-        setDataDriver(responseAPI.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleEndDate = (date) => {
+    const formattedDate = moment(date).format("YYYY-MM-DD");
+    setTglAkhir(formattedDate);
   };
 
   const downloadPdf = () => {
@@ -88,17 +93,12 @@ const LaporanTransaksi = () => {
       pdf.line(20, 65, 820, 65);
       pdf.text(`Tanggal : ${dateString}`, 20, 85, pdf.setFontSize(12));
       pdf.text(
-        `Data       : Rincian Laporan Driver ${tglAwal} / ${tglAkhir}`,
+        `Data       : Rincian Laporan ${tglAwal} / ${tglAkhir}`,
         20,
         105,
         pdf.setFontSize(12)
       );
-      pdf.text(
-        `Driver : ${dataDriver.nama}`,
-        670,
-        85,
-        pdf.setFontSize(12)
-      );
+
       pdf.text(
         `Total Pendapatan : Rp. ${totalPendapatan}`,
         670,
@@ -129,47 +129,55 @@ const LaporanTransaksi = () => {
 
   useEffect(() => {
     fetchLaporan();
-    fetchDriver();
   }, []);
   console.log(totalPendapatan);
   return (
     <div>
       <Navbar />
       <div className="container-fluid table-responsive-sm mt-3">
-        <div className="row mb-3">
-          <div className="col-md-3 mb-2">
-            <label className="small form-label">Nama Driver :</label>
-            <input
+      <div className="row mb-3">
+        <div className="col-md-3 mb-2">
+          <label className="small form-label">Tanggal Awal :</label>
+          <DatePicker
+            className="form-control"
+            value={tglAwal}
+            onChange={handleStartDate}
+          />
+        </div>
+        <div className="col-md-4 mb-2">
+          <label className="small form-label">Tanggal Akhir :</label>
+          <div className="d-flex">
+            <DatePicker
               className="form-control"
-              placeholder={dataDriver.nama}
-              disabled
+              value={tglAkhir}
+              minDate={selected}
+              onChange={handleEndDate}
             />
-          </div>
-          <div className="col-md-3 mb-2">
-            <label className="small form-label">Dari Tanggal :</label>
-            <input className="form-control" placeholder={tglAwal} disabled />
-          </div>
-          <div className="col-md-3 mb-2">
-            <label className="small form-label">Sampai Tanggal :</label>
-            <input className="form-control" placeholder={tglAkhir} disabled />
-          </div>
-          <div className="col-md-3 mb-2">
-            <label className="small form-label">Total Pendapatan :</label>
-            <div className="d-flex">
-              <input
-                className="form-control"
-                placeholder={"Rp. " + totalPendapatan}
-                disabled
-              />
-              <button
-                className="btn btn-outline-danger ms-4"
-                onClick={downloadPdf}
-              >
-                Cetak
-              </button>
-            </div>
+            <button
+              className="btn btn-outline-danger ms-4"
+              onClick={fetchLaporan}
+            >
+              Filter
+            </button>
           </div>
         </div>
+        <div className="col-md-3 mb-2">
+          <label className="small form-label">Total Pendapatan :</label>
+          <div className="d-flex">
+            <input
+              className="form-control"
+              placeholder={"Rp. " + totalPendapatan}
+              disabled
+            />
+            <button
+              className="btn btn-outline-danger ms-4"
+              onClick={downloadPdf}
+            >
+              Cetak
+            </button>
+          </div>
+        </div>
+      </div>
         <table
           className="table small"
           id="table-to-print"
@@ -178,6 +186,7 @@ const LaporanTransaksi = () => {
             <tr>
               <th scope="col">No</th>
               <th scope="col">ID</th>
+              <th scope="col">Nama Driver</th>
               <th scope="col">Nama Pelanggan</th>
               <th scope="col">Nama Penumpang</th>
               <th scope="col">Alamat</th>
@@ -194,6 +203,7 @@ const LaporanTransaksi = () => {
                 <tr key={transaksi.id}>
                   <td>{index + 1}</td>
                   <td>{transaksi.id}</td>
+                  <td>{transaksi.Jadwal_driver.Driver.nama}</td>
                   <td>{transaksi.User.username}</td>
                   <td>{transaksi.nama}</td>
                   <td>{transaksi.alamat}</td>
@@ -219,4 +229,4 @@ const LaporanTransaksi = () => {
   );
 };
 
-export default LaporanTransaksi;
+export default RincianLaporan;

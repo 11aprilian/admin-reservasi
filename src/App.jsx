@@ -23,7 +23,7 @@ import DriverOption from "./pages/DriverOption";
 import DriverAdd from "./pages/DriverAdd";
 import RekapTransaksi from "./pages/RekapTransaksi";
 import LaporanTransaksi from "./pages/LaporanTransaksi";
-
+import RincianLaporan from "./pages/RincianLaporan";
 
 function App() {
   return (
@@ -52,6 +52,7 @@ function App() {
         <Route path="/driver/add" element={<DriverAdd />} />
         <Route path="/transaksi/rekap" element={<RekapTransaksi />} />
         <Route path="/transaksi/laporan/:driverId/:tglAwal/:tglAkhir" element={<LaporanTransaksi />} />
+        <Route path="/transaksi/laporan/all" element={<RincianLaporan />} />
       </Routes>
     </>
   );

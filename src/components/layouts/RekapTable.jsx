@@ -11,8 +11,13 @@ import "jspdf-autotable";
 const RekapTable = () => {
   const [dataRekap, setDataRekap] = useState([]);
 
-  const [tglMulai, setTglMulai] = useState("");
-  const [tglSelesai, setTglSelesai] = useState("");
+  const [tglMulai, setTglMulai] = useState("2023-01-01");
+  const [tglSelesai, setTglSelesai] = useState(() => {
+    const tgl = new Date();
+    var current = new Date(tgl);
+    current.setDate(tgl.getDate() + 1);
+    return current.toISOString().split('T')[0]
+  });
   const [selected, setSelected] = useState("");
 
   const [totalPendapatan, setTotalPendapatan] = useState("");
@@ -100,7 +105,7 @@ const RekapTable = () => {
 
       const tableY = 62;
 
-      const excludeColumns = [5];
+      const excludeColumns = [4];
       const table = document.getElementById("table-to-print");
       // Exclude columns from the table
       excludeColumns.forEach((colIndex) => {
@@ -136,12 +141,11 @@ const RekapTable = () => {
     });
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetchRekap();
+  }, []);
 
-  console.log("tglMulai", tglMulai);
-  console.log("tglSelesai", tglSelesai);
   console.log(dataRekap);
-  console.log(totalPendapatan);
   return (
     <div className="container-fluid table-responsive-sm mt-3">
       <div className="row mb-3">
@@ -190,9 +194,8 @@ const RekapTable = () => {
       <table className="table" id="table-to-print">
         <thead className="thead-dark bg-dark text-white">
           <tr>
-            <th scope="col">Tanggal</th>
             <th scope="col">Nama Driver</th>
-            <th scope="col">Jumlah Transaksi</th>
+            <th scope="col">Jumlah Tiket Terjual</th>
             <th scope="col">Jumlah Perjalanan</th>
             <th scope="col">Pendapatan</th>
             <th scope="col">Action</th>
@@ -202,11 +205,6 @@ const RekapTable = () => {
           {dataRekap.map((transaksi, index) => {
             return (
               <tr key={index}>
-                <td>
-                  {tglMulai}
-                  {" / "}
-                  {tglSelesai}
-                </td>
                 <td>{transaksi.Jadwal_driver.Driver.nama}</td>
                 <td>{transaksi.jumlah_transaksi}</td>
                 <td>{transaksi.jumlah_perjalanan}</td>

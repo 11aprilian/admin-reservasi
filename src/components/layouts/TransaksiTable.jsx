@@ -31,6 +31,9 @@ const TransaksiTable = () => {
         <Link to="/transaksi/rekap" className="col-md-2 btn btn-sm btn-outline-primary mb-3 me-2">
           Rekap Transaksi
         </Link>
+        <Link to="/transaksi/laporan/all" className="col-md-2 btn btn-sm btn-outline-danger mb-3 me-2">
+          Rincian Transaksi
+        </Link>
       </div>
       <table className="table">
         <thead className="thead-dark bg-dark text-white">
@@ -39,6 +42,7 @@ const TransaksiTable = () => {
             <th scope="col">ID Transaksi</th>
             <th scope="col">Nama</th>
             <th scope="col">Bank</th>
+            <th scope="col">Status Pembayaran</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -50,6 +54,7 @@ const TransaksiTable = () => {
                 <td>{transaksi.id}</td>
                 <td>{transaksi.nama}</td>
                 <td>{transaksi.bank}</td>
+                <td>{transaksi.paid}</td>
                 <td>
                   <Link
                     to={`/transaksi/detail/${transaksi.id}`}
