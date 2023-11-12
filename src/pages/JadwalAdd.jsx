@@ -11,11 +11,13 @@ const JadwalAdd = () => {
   const [dataHari, setDataHari] = useState([]);
   const [dataRute, setDataRute] = useState([]);
   const [dataDriver, setDataDriver] = useState([]);
+  const [dataArmada, setDataArmada] = useState([]);
 
   const [jam, setJam] = useState("");
   const [hari, setHari] = useState("");
   const [rute, setRute] = useState("");
   const [driver, setDriver] = useState("");
+  const [armada, setArmada] = useState("");
 
   const navigate = useNavigate();
 
@@ -72,6 +74,19 @@ const JadwalAdd = () => {
       });
   };
 
+  const fetchArmada = () => {
+    axios
+      .get("http://localhost:3050/armada")
+      .then((result) => {
+        const responseAPI = result.data;
+
+        setDataArmada(responseAPI.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const addJadwal = async () => {
     if (jam === "") {
       Swal.fire({
@@ -83,7 +98,8 @@ const JadwalAdd = () => {
         JamId : jam,
         HariId : hari,
         RuteId : rute,
-        DriverId : driver
+        DriverId : driver,
+        ArmadaId: armada
       };
 
       try {
@@ -124,10 +140,11 @@ const JadwalAdd = () => {
     fetchHari();
     fetchRute();
     fetchDriver();
+    fetchArmada();
   }, []);
 
-  console.log(jam, hari, rute, driver);
-
+  console.log(jam, hari, rute, driver, armada);
+  console.log(dataArmada);
   return (
     <div>
       <Navbar />
@@ -209,6 +226,26 @@ const JadwalAdd = () => {
                   return (
                     <option key={driver.id} value={driver.id}>
                       {driver.nama}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
+            <div className="form-group m-3 col-md-4">
+              <label>Masukkan Armada</label>
+              <select
+                id="rute"
+                className="form-control mt-1"
+                onChange={(e) => {
+                  setArmada(e.target.value);
+                }}
+              >
+                <option value={0}>Armada Yang Tersedia</option>
+                {dataArmada.map((armada) => {
+                  return (
+                    <option key={armada.id} value={armada.id}>
+                      {armada.nama}
                     </option>
                   );
                 })}

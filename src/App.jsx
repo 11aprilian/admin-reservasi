@@ -25,6 +25,10 @@ import RekapTransaksi from "./pages/RekapTransaksi";
 import LaporanTransaksi from "./pages/LaporanTransaksi";
 import RincianLaporan from "./pages/RincianLaporan";
 
+import Armada from "./pages/Armada";
+import ArmadaAdd from "./pages/ArmadaAdd";
+import ArmadaUpdate from "./pages/ArmadaUpdate";
+
 function App() {
   return (
     <>
@@ -53,6 +57,10 @@ function App() {
         <Route path="/transaksi/rekap" element={<RekapTransaksi />} />
         <Route path="/transaksi/laporan/:driverId/:tglAwal/:tglAkhir" element={<LaporanTransaksi />} />
         <Route path="/transaksi/laporan/all" element={<RincianLaporan />} />
+
+        <Route path="/armada" element={<Armada />} />
+        <Route path="/armada/add" element={<ArmadaAdd />} />
+        <Route path="/armada/update/:id" element={<ArmadaUpdate />} />
       </Routes>
     </>
   );

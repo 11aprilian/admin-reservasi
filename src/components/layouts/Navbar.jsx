@@ -71,9 +71,9 @@ const Navbar = () => {
               <Link className="nav-link" to="/jam">
                 Jam
               </Link>
-              {/* <Link className="nav-link" to="/hari">
-                Hari
-              </Link> */}
+              <Link className="nav-link" to="/armada">
+                Armada
+              </Link>
               <Link className="nav-link" to="/driver">
                 Driver
               </Link>

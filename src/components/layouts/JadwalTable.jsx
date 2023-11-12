@@ -115,6 +115,7 @@ const JadwalTable = () => {
             <th scope="col">Hari</th>
             <th scope="col">Rute</th>
             <th scope="col">Driver</th>
+            <th scope="col">Armada</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -127,12 +128,13 @@ const JadwalTable = () => {
                 <td>{jadwal.Hari.hari}</td>
                 <td>{jadwal.Rute.arah}</td>
                 <td>{jadwal.Driver.nama}</td>
+                <td>{jadwal.Armada.nama}</td>
                 <td>
                   <Link
                     to={`/jadwal/update/${jadwal.id}`}
                     className="btn btn-sm m-1 btn-outline-primary me-4"
                   >
-                    <BsFillPencilFill />{" "}Ubah Driver
+                    <BsFillPencilFill />{" "}Edit
                   </Link>
                   <button
                     className="btn btn-sm m-1 btn-outline-secondary"
